@@ -1,0 +1,333 @@
+.bg-grey{
+	background-color: #f2f2f2;
+}
+.bg-img{
+	height: 100vh;
+	background: url(../img/load-bg.jpg) no-repeat top center;
+	background-size: 100% 100%;
+}
+.rainbow-logo{
+	display: block;
+	width: 200px;
+	margin:0 auto;
+	margin-top: 140px;
+}
+.rainbow-box{
+	width:60%;
+	margin: 20px auto;
+	margin-top:30px;
+}
+.rainbow-group{
+	display: flex;
+	border-bottom: 1px solid #fff;
+	padding:15px 0;
+}
+.rainbow-group label{
+	flex: 1;
+	box-sizing: border-box;
+}
+.rainbow-group img{
+	display: block;
+	width:18px;
+	flex: 1;
+}
+.rainbow-group input{
+	flex:5;
+	font-size: 15px;
+	color: #fff;
+}
+.rainbow-group input::-ms-input-placeholder{
+	color: #fff;
+}
+.rainbow-group input::-webkit-input-placeholder{
+	color: #fff;
+}
+.rainbow-group input::-moz-input-placeholder{
+	color: #fff;
+}
+.load-btn{
+	display: block;
+	background: #fff600;
+	width: 90%;
+	height: 50px;
+	font-size: 15px;
+	border-radius: 50px;
+	margin:20px auto;
+	margin-top: 60px;
+	box-shadow: 0px 3px 5px 0px rgba(24, 24, 24, 0.1);
+}
+/*消费金额*/
+.free-img{
+	display: block;
+	width: 100%;
+}
+.free-box{
+	width: 92%;
+	box-sizing: border-box;
+	margin: 0 auto;
+	margin-top: 40px;
+	background: #fff;
+	border-radius: 5px;
+	padding:0 15px;
+	box-shadow: 0px 3px 5px 0px rgba(24, 24, 24, 0.1);
+}
+.free-group{
+	border-bottom: 1px solid #e5e5e5;
+	padding:15px 0;
+}
+.free-group label{
+	font-size:15px;
+}
+.free-group input{
+	font-size: 15px;
+	padding: 0 15px;
+}
+.free-tip{
+	color: #333;
+	font-size: 15px;
+	padding:15px 0;
+}
+.free-tip span{
+	color: #ff0000;
+}
+.free-btn{
+	display: block;
+	background: #0887c9;
+	width: 80%;
+	color: #fff;
+	height: 50px;
+	font-size: 15px;
+	border-radius: 50px;
+	margin:20px auto;
+	margin-top: 60px;
+	box-shadow: 0px 3px 5px 0px rgba(24, 24, 24, 0.1);
+}
+.lf-logo{
+	display: block;
+	width:100px;
+	margin: 20px auto;
+}
+
+
+.lf-agreement-contant {
+	width: 90%;
+	margin: 10px auto;
+}
+.lf-agreement-contant h1 {
+	font-size: 15px;
+	text-align: center;
+	color: #333;
+	font-weight: normal;
+	line-height: 40px;
+}
+.lf-form {
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.lf-common-title {
+	font-size: 15px;
+	color: #333333;
+	font-weight: normal;
+	line-height: 40px;
+}
+
+.message-tip{
+	display: flex;
+	width:100%;
+	margin: 0 auto;
+	background: #fff;
+	padding: 15px;
+	box-sizing: border-box;
+}
+.tip-icon{
+	flex: 1;
+}
+.tip-icon img{
+	display: block;
+	width: 36px;
+	margin-top: 2px;
+}
+.message-tip h1{
+	flex: 6;
+	font-size: 15px;
+	font-weight: normal;
+	color: #333;
+}
+.tip-hours{
+	color: #ff0000;
+}
+/*车牌*/
+.binding-head {
+	width: 100%;
+	background: #0887c9;
+	color: #fff;
+	font-size: 16px;
+	height: 44px;
+	line-height: 44px;
+	text-align: center;
+	position: relative;
+}
+.lf-place-sao{
+	position: absolute;
+	right: 15px;
+	top: 0px;
+	z-index: 112;
+}
+.binding-title {
+	font-size: 14px;
+	text-align: center;
+	color: #333;
+	margin: 30% 0 40px 0;
+}
+
+/* test */
+.License_plate{
+	width: 100%;
+	background: #fff;
+	padding:10px;
+	box-sizing: border-box;
+	border-radius: 5px;
+	box-shadow: 0px 2px 3px 0px rgba(0, 0, 0, 0.1);
+}
+.plate-box {
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	margin-left: auto;
+	margin-right: auto;
+	box-sizing: border-box;
+}
+
+.place_input {
+	width: 11%;
+	height:46px;
+	background-color: #0887c9;
+	text-align: center;
+	border-radius:5px;
+	color: #fff;
+	font-size: 15px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	margin: 0 3px 0 2px;
+
+}
+.number{
+	box-sizing: border-box;
+}
+.number_input {
+	width: 11%;
+	height:46px;
+	background-color: #0887c9;
+	text-align: center;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 15px;
+	border: 1px solid #ccc;
+	box-sizing: border-box;
+	margin: 0 3px 0 2px;
+}
+
+.bing-point {
+	border-radius: 50%;
+	font-size:38px;
+	color: #999;
+}
+
+.place_container01,
+.place_container02 {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	background-color: #f8f8f8;
+	z-index: 10;
+	transform: translateY(400px);
+	transition: 0.5s;
+}
+
+.place_container01 a,
+.place_container02 a {
+	display: block;
+	float: left;
+	margin: 5px;
+	width: calc(100% / 8 - 10px);
+	text-align: center;
+	color: #333;
+	font-size: 15px;
+	background: #ebebeb;
+	border-radius: 5px;
+	line-height: 26px;
+}
+
+.place_container01 a:hover {
+	background-color: #0887c9;
+	color: #fff;
+}
+
+.place_container02 a:hover {
+	background-color: #0887c9;
+	color: #fff;
+}
+
+.Botton,
+.Botton01,
+.Botton02,
+.Botton03 {
+	height: 40px;
+	line-height: 40px;
+	background-color: transparent;
+	color: #fff;
+	font-size: 14px;
+	width: 60px;
+	float: right;
+}
+
+.Botton03 {
+	float: right;
+	color: #262626;
+	width: 60px;
+	margin-right: 20px;
+}
+
+.lf-place-title {
+	background: #0887c9;
+	border-bottom: 1px solid #ccc;
+	height: 40px;
+	overflow: hidden;
+}
+
+.lf-place-title p {
+	font-size: 14px;
+	color: #fff;
+	float: left;
+	line-height: 40px;
+	margin-left: 15px;
+}
+
+.lf-place-line {
+	clear: both;
+	border-bottom: 1px solid #ccc;
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
+}
+.sure-btn {
+	display: block;
+	color: #fff;
+	background: #0887c9;
+	box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, 0.15);
+	height: 44px;
+	font-size: 15px;
+	border-radius: 50px;
+	width:80%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 80px;
+}
+.lf-logo{
+	display: block;
+	width:100px;
+	margin: 20px auto;
+}

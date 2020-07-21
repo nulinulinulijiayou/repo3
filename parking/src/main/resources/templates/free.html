@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<title>免费停车时长查询</title>
+		<link rel="stylesheet" href="../static/css/lf-grid.css">
+		<link rel="stylesheet" href="../static/css/main.css">
+		<script type="text/jscript" src="../static/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../static/js/jquery.jokeer.js"></script>
+		<script type="text/javascript" src="../static/js/jquery.jqprint-0.3.js"></script>
+		<!-- 实现打印 -->
+		<script type="text/javascript" src="../static/js/jquery.browser.js"></script>
+		<!-- 是jquery.jqprint-0.3.js的补充文件 -->
+		<script type="text/javascript" src="../static/js/jquery.qrcode.min.js"></script>
+		<script type="text/javascript" src="../static/js/jquery.jokeer.js"></script>
+	</head>
+	<body class="bg-grey">
+
+		<div class="lf-col-lg-6 lf-col-lg-offset-3 lf-col-md-12 lf-col-xs-12 lf-col-xs-12 lf-col-md-12 lf-p0">
+			<img src="../static/img/free_01.png" class="free-img">
+			<div class="free-box">
+				<div class="free-group">
+					<label>消费金额(元)</label>
+					<input id="input-money" type="number" class="rainbow-money" placeholder="请输入消费金额"/>
+				</div>
+				<div class="free-tip">获得<span id="showTime">0</span><span id="show-money"></span>免费停车时长</div>
+			</div>
+			<button type="button" class="free-btn"  id="subAndPrint2">确定</button> <!--onclick="printQr();"-->
+			<img src="../static/img/lf-logo.png" class="lf-logo">
+		</div>
+		<div class="lf-alert"></div>
+
+		<div id="print" style="height: 50px;width: 40px;">
+			<div id="qrcode" style="width: 100px;margin:0 auto"></div>
+		</div>
+
+		<input id="getuuid" type="hidden" value="">
+		<input id="rulsid" type="hidden" value="">
+	<!--------------------------------------------------------------------->
+	</body>
+	<script type="text/javascript">
+		$('.free-btn').click(function(){
+			var rainbowMoney = $('.rainbow-money').val();
+			if(rainbowMoney == '' || rainbowMoney == null){
+				$('.lf-alert').html('消费金额不能为空！').addClass('lf-alert-info').show().delay(2000).fadeOut();
+				return false;
+			}
+			else{
+				/* window.location.href = "#"; */
+			//	window.location.href = "/orders/setOrder?money="+$('#input-money').val()+"&uuid="+guid();
+			}
+		})
+
+		 $('#input-money').blur(function(){
+		 	if (parseInt($('.rainbow-money').val())>=999999999||$('.rainbow-money').val()==null||$('.rainbow-money').val()==''){
+		 		alert("请填入合法的消费金额!");
+		 		$('#input-money').val('');
+		 		return false;
+			}
+		 	$("#getuuid").val(guid());
+			$.ajax({
+				url:"../shop/showTime",
+				type:"Get",
+				data:{money: $('#input-money').val()},
+				success:function (data) {
+			if("1"==data.state){
+				$('#showTime').text(data.messge);
+				$('#show-money').text("小时");
+			}
+			if("2"==data.state){
+				$('#showTime').text(data.messge);
+				$('#show-money').text();
+			}
+				}
+			});
+		 })
+
+		$("#subAndPrint2").on('click',function () {
+				$.ajax({
+					url:"../orders/setOrder",
+					type:"Get",
+					data:{time:$('#showTime').text(),
+						  uuid:$('#getuuid').val()},
+					success:function (data) {
+						alert(data.success);
+						$("#rulsid").val(data.rulsid);
+						if (data.success=="订单数据已经生成！正在打印小票！"){
+							/*alert("打印小票被注释");*/
+							$("#input-money").val('');
+							http://sodo.lianfuteam.com/parking/orders/sentbind?uuid="+uuid+"&rulsid="+rulsid+"&youhui="+youhui+"
+							console.log("localhost:8088/parking/orders/sentbind?uuid="+$('#getuuid').val()+"&youhui="+$('#showTime').text()+"&rulsid="+$("#rulsid").val());
+						dd();
+						}
+						else {
+							return false;
+						}
+
+					}
+				});
+		})
+
+		function dd() {
+				$.ajax({
+					url:"../print",
+					type:"Get",
+					data:{
+						uuid:$('#getuuid').val(),
+						rulsid:$("#rulsid").val(),
+						youhui:$('#showTime').text()},
+					success:function (data) {
+					}
+				});
+		}
+		//用于生成uuid
+		function S4() {
+			return (((1+Math.random())*0x10000)|0).toString(16).substring(1);
+		}
+		function guid() {
+			return (S4()+S4()+S4()+S4()+S4()+S4()+S4()+S4());
+		}
+	</script>
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:td="http://www.w3.org/1999/html">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script type="text/jscript" src="../static/js/jquery-1.9.1.min.js"></script>
+    <title>导出html页面</title>
+
+</head>
+<body >
+<style>
+    .button{
+        width: 90px;
+        line-height: 2px;
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+        text-shadow:1px 1px 1px #333;
+        border-radius: 5px;
+        margin:0 20px 20px 0;
+        position: relative;
+        overflow: hidden;
+    }
+    #from input{
+        height: 25px;
+    }
+</style>
+<div style="margin:0 400px;">
+<div>
+    每月初始化
+    <div style="border: 2px dodgerblue solid;width: 1200px;height: 30px;" >
+        增加商户
+        <from id="from">
+            <input id="shopName" type="text" name="shopName" placeholder="商户名称" value="">
+            <input id="shopAccount" type="text" name="shopAccount" placeholder="商户账号" value="">
+            <input id="shopPassword" type="text" name="shopPassword" placeholder="商户密码" value="">
+            <select id="rulsId" name="rulsId">
+                <option value="1">按照时间</option>
+                <option value="2">按照次数</option>
+            </select>
+            <input type="button" onclick="dd()" class="button" value="添加">
+        </from>
+    </div>
+
+    <div style="border: 1px saddlebrown solid;width: 1200px;height: 400px">
+
+        <table >
+            <tr>
+                <th></th>
+                <th>商户id：</th>
+                <th>商户名称：</th>
+                <th>商户账号：</th>
+                <th>商户密码:</th>
+                <th>商户规则: </th>
+                <th> 商户优惠总时长:</th>
+                <th> 商户优惠总次数:</th>
+                <th> 商户优惠剩余时间: </th>
+                <th> 商户优惠剩余次数:</th>
+            </tr>
+        <tr th:each="i:${shops}">
+            <td> <input th:value="${i.getShopId()}" name="radio" type="radio"></td>
+           <!-- <td><input type="radio" id="radio" value="${i.getShopId()}" name="radio"></td>-->
+            <td th:text="${i.getShopId()}"></td>
+            <td th:text="${i.getShopName()}"></td>
+            <td th:text="${i.getShopAccount()}"></td>
+            <td th:text="${i.getShopPassword()}"></td>
+            <td th:text="${i.getRulsId()}"></td>
+            <td th:text="${i.getStopAllTime()}"></td>
+            <td th:text="${i.getStopAllNums()}"></td>
+            <td th:text="${i.getStopSurTime()}"></td>
+            <td th:text="${i.getStopSurNums()}"></td>
+        </tr>
+        </table>
+        <button onclick="editshop()" >修改</button>
+    </div>
+
+
+    <div style="border: 1px saddlebrown solid;width: 1200px;height: 80px">
+        修改规则<br>
+        <from>
+        时间：    <input id="rulsMoney" type="text" name="rulsMoney" value="消费金额">
+            <input id="rulsTime" type="text" name="rulsTime" value="减免时间"> <button onclick="editBytime()">确认修改</button><br>
+            次数：
+            <input id="rulsMoney2"  name="rulsMoney" value="消费金额">
+            <input id="rulsNums" name="rulsNums" value="减免天数"><button onclick="editByNums()">确认修改</button>
+        </from>
+    </div>
+    <div style="border: 1px saddlebrown solid;width: 1200px;height: 80px">
+        设置默认商家优惠幅度：<input id="stopAllTime" type="text" name="stopAllTime" value="商家默认时间">
+        <input id="stopAllNums" type="text" name="stopAllNums" value="商家默认次数"> <button onclick="setShopTimeAndNums()">确认修改</button><br>
+    </div>
+</div>
+
+<div style="border: 1px saddlebrown solid;width: 1200px;height: 50px">
+    修改商户
+    <from>
+        <input id="shopid" type="hidden" name="shopid" value="商户名称">
+        <input id="shopNamee" type="text" name="shopName" value="商户名称">
+        <input id="shopAccounte" type="text" name="shopAccount" value="商户账号">
+        <input id="shopPassworde" type="text" name="shopPassword" value="商户密码">
+        <select id="rulsIde" name="rulsId">
+            <option value="1">按照时间</option>
+            <option value="2">按照次数</option>
+        </select>
+        <input id="stopAllTimee" type="text" name="shopName" value="商户总时长">
+        <input id="stopAllNumse" type="text" name="shopAccount" value="商户总次数">
+        <input id="stopSurTimee" type="text" name="shopPassword" value="商户剩余时长">
+        <input id="stopSurNumse" type="text" name="shopPassword" value="商户剩余次数">
+        <input type="button" onclick="editshoptrue()" value="确认修改">
+    </from>
+</div>
+</div>
+<script>
+    function dd() {
+        $.ajax({
+            url: "../shop/add",
+            type: "Get",
+            data: {
+                shopName: $('#shopName').val(),
+                shopAccount: $("#shopAccount").val(),
+                shopPassword: $("#shopPassword").val(),
+                rulsId: $("#rulsId").val(),
+            },
+            success: function (data) {
+                alert("商户添加成功！");
+            }
+        });
+    }
+
+    function editBytime() {
+        $.ajax({
+            url: "../ruls/editBytime",
+            type: "Get",
+            data: {
+                rulsTime: $('#rulsTime').val(),
+                rulsMoney: $("#rulsMoney").val(),
+            },
+            success: function (data) {
+                //     alert("商户添加成功！");
+            }
+        });
+    }
+    function editByNums() {
+        $.ajax({
+            url: "../ruls/editByNums",
+            type: "Get",
+            data: {
+                rulsMoney:$("#rulsMoney2").val(),
+                rulsNums:$("#rulsNums").val(),
+            },
+            success: function (data) {
+                //     alert("商户添加成功！");
+            }
+        });
+    }
+    function setShopTimeAndNums() {
+        $.ajax({
+            url: "../shop/setShopTimeAndNums",
+            type: "Get",
+            data: {
+                stopAllTime:$("#stopAllTime").val(),
+                stopAllNums:$("#stopAllNums").val(),
+            },
+            success: function (data) {
+                //     alert("商户添加成功！");
+            }
+        });
+    }
+    function editshop() {
+        var valll= $('input[name="radio"]:checked').val();
+        $.ajax({
+            url: "../shop/queryShopById",
+            type: "Get",
+            data: {
+                id:valll,
+            },
+            success: function (data) {
+              $("#shopNamee").val(data.shopName);
+                $("#shopAccounte").val(data.shopAccount);
+                $("#shopPassworde").val(data.shopPassword);
+                $("#rulsIde").val(data.rulsId);
+                $("#stopAllTimee").val(data.stopAllTime);
+                $("#stopAllNumse").val(data.stopAllNums);
+                $("#stopSurTimee").val(data.stopSurTime);
+                $("#stopSurNumse").val(data.stopSurNums);
+                $("#shopid").val(data.shopId);
+            }
+        });
+    }
+
+function editshoptrue() {
+    $.ajax({
+        url: "../shop/editShopTiAndNums",
+        type: "Get",
+        data: {
+            shopName: $("#shopNamee").val(),
+            shopId: $("#shopid").val(),
+            shopAccount:  $("#shopAccounte").val(),
+            shopPassword:   $("#shopPassworde").val(),
+            role: $("#rulsIde").val(),
+            stopAllTime:  $("#stopAllTimee").val(),
+            stopAllNums:  $("#stopAllNumse").val(),
+            stopSurTime: $("#stopSurTimee").val(),
+            stopSurNums:  $("#stopSurNumse").val(),
+
+        },
+        success: function (data) {
+            alert("修改成功");
+        }
+    });
+}
+
+
+</script>
+</body>
+
+</html>

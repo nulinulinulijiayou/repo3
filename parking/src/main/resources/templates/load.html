@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" >
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<title>登录</title>
+		<link rel="stylesheet" href="../static/css/lf-grid.css">
+		<link rel="stylesheet" href="../static/css/main.css">
+		<script type="text/jscript" src="../static/js/jquery-1.9.1.min.js"></script>
+	</head>
+	<body class="bg-img">
+		<div class="lf-col-lg-6 lf-col-lg-offset-3 lf-col-md-12 lf-col-xs-12 lf-col-xs-12 lf-col-md-12 lf-p0">
+			<img src="../static/img/load.png" class="rainbow-logo">
+			<div class="rainbow-box">
+				<span th:text="${msg}" style="color: #f2f2f2"></span>
+				<div class="rainbow-group">
+					<label><img src="../static/img/zhanghao.png"></label>
+					<input type="text" id="loadId" placeholder="请输入账号"/>
+				</div>
+				<div class="rainbow-group lf-m-t15">
+					<label><img src="../static/img/mima.png"></label>
+					<input type="password" id="loadPass" placeholder="请输入密码"/>
+				</div>
+				<button type="button" class="load-btn">登录</button>
+			</div>
+		</div>
+		<div class="lf-alert"></div>
+	</body>
+	<script type="text/javascript">
+		$('.load-btn').click(function(){
+			var valloadId = $('#loadId').val();
+			var valloadPass = $('#loadPass').val();
+			if(valloadId == '' || valloadId == null){
+				$('.lf-alert').html('账号不能为空！').addClass('lf-alert-info').show().delay(2000).fadeOut();
+				return false;
+			}
+			else if(valloadPass == '' || valloadPass == null){
+				$('.lf-alert').html('密码不能为空！').addClass('lf-alert-info').show().delay(2000).fadeOut();
+				return false;
+			}
+			else{
+				window.location.href = "../shop/index?shopAccount="+valloadId+"&shopPassword="+valloadPass;
+			}
+		})		
+	</script>
+</html>

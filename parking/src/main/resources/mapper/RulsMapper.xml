@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lianfu.mapper.RulsMapper">
+
+    <resultMap id="BaseResultMap" type="com.lianfu.pojo.Ruls">
+        <result column="ruls_id" jdbcType="INTEGER" property="rulsId" />
+        <result column="ruls_time" jdbcType="INTEGER" property="rulsTime" />
+        <result column="ruls_money" jdbcType="INTEGER" property="rulsMoney" />
+        <result column="ruls_nums" jdbcType="INTEGER" property="rulsNums" />
+        <result column="hightmoney" jdbcType="INTEGER" property="hightmoney" />
+    </resultMap>
+
+    <insert id="addRules" parameterType="com.lianfu.pojo.Ruls">
+INSERT INTO `ruls` ( `ruls_time`, `ruls_money`, `ruls_nums`) VALUES (#{rulsTime},#{rulsMoney},#{rulsNums})
+    </insert>
+    <select id="queryRuls" resultMap="BaseResultMap">
+        select * from ruls r order by r.ruls_money;
+    </select>
+    <delete id="deleteRules" parameterType="com.lianfu.pojo.Ruls" >
+        delete from ruls where ruls_id=#{rulsId}
+    </delete>
+    <update id="editRulesByTime" parameterType="com.lianfu.pojo.Ruls">
+        update ruls set ruls_time = #{rulsTime},ruls_money=#{rulsMoney} where ruls_id=#{rulsId}
+    </update>
+
+    <update id="editRulesByNums" parameterType="com.lianfu.pojo.Ruls">
+        update ruls set ruls_nums = #{rulsNums},ruls_money=#{rulsMoney} where ruls_id=#{rulsId}
+    </update>
+    <select id="queryRulsByShopId" parameterType="int" resultMap="BaseResultMap">
+        select * from ruls where ruls_id=#{shopid}
+    </select>
+    <select id="quertRulsnew" parameterType="int" resultMap="BaseResultMap">
+        select ruls_time from ruls r where #{money}> r.ruls_money ORDER BY r.ruls_money DESC LIMIT 1
+    </select>
+    <update id="edithight"  parameterType="int">
+        update ruls set hightmoney = #{money}
+    </update>
+</mapper>

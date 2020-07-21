@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no" />
+		<title>车牌号</title>
+		<link rel="stylesheet" href="../static/css/lf-grid.css" type="text/css">
+		<link rel="stylesheet" href="../static/css/main.css" type="text/css">
+		<script src="../static/js/jquery-1.9.1.min.js"></script>
+		<script src="../static/js/binding.js"></script>
+	</head>
+
+	<body class="lf-bg-grey">
+	<input th:value="${parkuuid}" id="parkuuid" style="display: none"></input>
+	<input th:value="${rulsid}" id="rulsid" style="display: none"></input>
+		<div class="lf-container-box">
+			<div class="lf-row">
+				<div class="lf-col-lg-6 lf-col-lg-offset-3 lf-col-md-12 lf-col-xs-12 lf-col-xs-12 lf-col-md-12 lf-p0">
+					<div class="binding-head">车牌号</div>
+					<div class="message-tip">
+						<div class="tip-icon"><img src="../static/img/tip.png"></div>
+						<h1>免费停车时长
+
+
+						<!--	<span th:switch="${youhui != '1'}">
+								<span th:case="true"  th:text="${youhui+'小时'}" class="tip-hours" ></span>
+								<span th:case="false" th:text="${youhui+'天'}" class="tip-hours" ></span>
+							</span>-->
+							<span th:text="${youhui}" class="tip-hours" id="youhui"></span><span> 小时</span>
+						</h1>
+					</div>
+					<form action="" onsubmit="return checkBidfor()">
+						<div class="lf-form lf-m-t20">
+							<h5 class="lf-common-title lf-m-t10">输入车牌号 </h5>
+							<div class="License_plate lf-m-b10">
+								<div class="plate-box">
+									<input class="place_input" type="text" readonly="readonly">
+									<input class="place_input" type="text" readonly="readonly">
+									<span class="bing-point">·</span>
+									<input class="number_input" type="text" readonly="readonly">
+									<input class="number_input" type="text" readonly="readonly">
+									<input class="number_input" type="text" readonly="readonly">
+									<input class="number_input" type="text" readonly="readonly">
+									<input class="number_input" type="text" readonly="readonly">
+									<input class="number_input" value="+" type="text" readonly="readonly">
+								</div>
+							</div>
+						</div>
+						<button type="submit" class="sure-btn lf-m-t20" id="enture">确认</button>
+						<img src="../static/img/lf-logo.png" class="lf-logo">
+						<div class="lf-alert"></div>
+					</form>
+				</div>
+				<div class="clearfixed"></div>
+			</div>
+		</div>
+		<div class="place_container01 lf-col-lg-6 lf-col-lg-offset-3 lf-p0">
+			<div class="lf-place-title">
+				<p>请选择归属地</p>
+				<button class="Botton02">重置</button>
+				<button class="Botton">确定</button>
+				<div class="clearfixed"></div>
+			</div>
+			<div class="place_text">
+				<a class="place">京</a>
+				<a class="place">津</a>
+				<a class="place">沪</a>
+				<a class="place">渝</a>
+				<a class="place">辽</a>
+				<a class="place">黑</a>
+				<a class="place">吉</a>
+				<a class="place">冀</a>
+				<a class="place">鲁</a>
+				<a class="place">苏</a>
+				<a class="place">浙</a>
+				<a class="place">闽</a>
+				<a class="place">豫</a>
+				<a class="place">鄂</a>
+				<a class="place">湘</a>
+				<a class="place">皖</a>
+				<a class="place">赣</a>
+				<a class="place">粤</a>
+				<a class="place">桂</a>
+				<a class="place">甘</a>
+				<a class="place">宁</a>
+				<a class="place">晋</a>
+				<a class="place">蒙</a>
+				<a class="place">陕</a>
+				<a class="place">新</a>
+				<a class="place">青</a>
+				<a class="place">藏</a>
+				<a class="place">川</a>
+				<a class="place">贵</a>
+				<a class="place">滇</a>
+				<a class="place">琼</a>
+				<a class="place">台</a>
+				<a class="place">香</a>
+				<a class="place">澳</a>
+				<div class="lf-place-line"></div>
+				<a class="place">A</a>
+				<a class="place">B</a>
+				<a class="place">C</a>
+				<a class="place">D</a>
+				<a class="place">E</a>
+				<a class="place">F</a>
+				<a class="place">G</a>
+				<a class="place">H</a>
+				<a class="place">I</a>
+				<a class="place">J</a>
+				<a class="place">K</a>
+				<a class="place">L</a>
+				<a class="place">M</a>
+				<a class="place">N</a>
+				<a class="place">O</a>
+				<a class="place">P</a>
+				<a class="place">Q</a>
+				<a class="place">R</a>
+				<a class="place">S</a>
+				<a class="place">T</a>
+				<a class="place">U</a>
+				<a class="place">V</a>
+				<a class="place">W</a>
+				<a class="place">X</a>
+				<a class="place">Y</a>
+				<a class="place">Z</a>
+				<div class="clearfixed"></div>
+			</div>
+		</div>
+		<div class="place_container02  lf-col-lg-6 lf-col-lg-offset-3 lf-p0">
+			<div class="lf-place-title">
+				<button class="Botton02">重置</button>
+				<button class="Botton01">确定</button>
+			</div>
+			<div class="number">
+				<a class="place">A</a>
+				<a class="place">B</a>
+				<a class="place">C</a>
+				<a class="place">D</a>
+				<a class="place">E</a>
+				<a class="place">F</a>
+				<a class="place">G</a>
+				<a class="place">H</a>
+				<a class="place">I</a>
+				<a class="place">J</a>
+				<a class="place">K</a>
+				<a class="place">L</a>
+				<a class="place">M</a>
+				<a class="place">N</a>
+				<a class="place">O</a>
+				<a class="place">P</a>
+				<a class="place">Q</a>
+				<a class="place">R</a>
+				<a class="place">S</a>
+				<a class="place">T</a>
+				<a class="place">U</a>
+				<a class="place">V</a>
+				<a class="place">W</a>
+				<a class="place">X</a>
+				<a class="place">Y</a>
+				<a class="place">Z</a>
+				<div class="lf-place-line"></div>
+				<a class="place">1</a>
+				<a class="place">2</a>
+				<a class="place">3</a>
+				<a class="place">4</a>
+				<a class="place">5</a>
+				<a class="place">6</a>
+				<a class="place">7</a>
+				<a class="place">8</a>
+				<a class="place">9</a>
+				<a class="place">0</a>
+			</div>
+		</div>
+	<script type="text/javascript">
+		//验证
+		function checkBidfor() {
+			//车牌验证
+			var List =''; //定义获取input的字符串
+			var myinput = $('.plate-box input'); //获取plate-box中的全部input
+			/* console.log(myinput.length); */
+			for (var i = 0; i < myinput.length; i++) { //获取input的内容
+				List += myinput[i].value; //获取input中的内容
+				List = List.replace("+", ""); //不管有没有+ 内容都会去掉+这个字符串
+				/*console.log(List.length);*/
+			};
+			if (List.length == 7 || List.length == 8) { //如果是7位数8位数，验证通过
+				console.log("list的值+"+List);
+				//var uuid=document.getElementById("parkuuid").value;
+				$.ajax({
+					url:"../orders/startOrder",
+					type:"Get",
+					data:{uuid: document.getElementById("parkuuid").value,
+						rulsid:document.getElementById("rulsid").value,
+						youhui:document.getElementById("youhui").innerText,
+						carNum:List},
+					success:function (data) {
+						alert(data);
+					}
+				});
+			//	window.location.href = "/orders/startOrder?uuid="+uuid+"&carNum="+List;
+				return false;
+			} else {
+				$('.lf-alert').html('车牌号错误').addClass('lf-alert-info').show().delay(2000).fadeOut();
+				return false;
+			}
+		};
+
+	/*	window.location=function () {
+			var youhui=$('youhui').text();
+			if ("1"==youhui){
+				$('youhui').text("1天")
+			}else{
+				$('youhui').text(youhui+"小时")
+			}
+		}*/
+	</script>
+	</body>
+</html>

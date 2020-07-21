@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lianfu.mapper.OrderMapper">
+
+   <resultMap id="BaseResultMap" type="com.lianfu.pojo.Orders">
+        <result column="order_id" jdbcType="VARCHAR" property="orderId" />
+        <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+        <result column="park_num" jdbcType="INTEGER" property="parkNum" />
+        <result column="park_time" jdbcType="VARCHAR" property="parkTime" />
+       <result column="car_num" jdbcType="VARCHAR" property="carNum" />
+       <result column="state" jdbcType="VARCHAR" property="state" />
+    </resultMap>
+
+    <insert id="addOrder" parameterType="com.lianfu.pojo.Orders">
+INSERT INTO `orders` (`order_id`, `shop_id`, `park_num`, `park_time`, `car_num`) VALUES (#{orderId},#{shopId},#{parkNum},#{parkTime},#{carNum})
+    </insert>
+
+    <select id="findOrderByUUid" parameterType="String" resultMap="BaseResultMap">
+    select * from orders where order_id=#{ordrid}
+    </select>
+    <update id="editOrderState" parameterType="com.lianfu.pojo.Orders" >
+    UPDATE orders SET state='1',car_num=#{carNum} WHERE order_id=#{orderId}
+    </update>
+</mapper>
